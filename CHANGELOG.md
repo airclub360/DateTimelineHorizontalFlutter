@@ -1,3 +1,11 @@
+# CHANGE LOG
+
+## [1.2.4] - 24/11/2022
+
+* Added option selectedDateStyle
+* Added option selectedMonthStyle
+* Added option selectedDayStyle
+
 ## [1.2.3] - 06/03/2021
 
 * Migrated to Null Safety
@@ -37,10 +45,9 @@
 
 ## [0.0.2] - 05/09/2019
 
-* Updated Readme 
+* Updated Readme
 * Added Selected Time Display to the Demo App
 * Removed time from the selected date
-
 
 ## [0.0.1] - 24/08/2019
 
