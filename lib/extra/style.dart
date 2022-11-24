@@ -17,6 +17,24 @@ const TextStyle defaultDateTextStyle = TextStyle(
 
 const TextStyle defaultDayTextStyle = TextStyle(
   color: AppColors.defaultDayColor,
-  fontSize: Dimen.dayTextSize,
+  fontSize: Dimen.daySelectedTextSize,
   fontWeight: FontWeight.w500,
+);
+
+const TextStyle defaultSelectedMonthTextStyle = TextStyle(
+  color: AppColors.defaultSelectionColor,
+  fontSize: Dimen.monthSelectedTextSize,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle defaultSelectedDateTextStyle = TextStyle(
+  color: AppColors.defaultSelectionColor,
+  fontSize: Dimen.dateSelectedTextSize,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle defaultSelectedDayTextStyle = TextStyle(
+  color: AppColors.defaultSelectionColor,
+  fontSize: Dimen.dayTextSize,
+  fontWeight: FontWeight.bold,
 );
