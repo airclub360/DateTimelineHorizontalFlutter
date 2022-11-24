@@ -1,9 +1,10 @@
-import 'package:date_picker_timeline/date_widget.dart';
-import 'package:date_picker_timeline/extra/color.dart';
-import 'package:date_picker_timeline/extra/style.dart';
-import 'package:date_picker_timeline/gestures/tap.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'date_widget.dart';
+import 'extra/color.dart';
+import 'extra/style.dart';
+import 'gestures/tap.dart';
 
 class DatePicker extends StatefulWidget {
   /// Start Date in case user wants to show past dates
@@ -67,7 +68,7 @@ class DatePicker extends StatefulWidget {
   /// Locale for the calendar default: en_us
   final String locale;
 
-  DatePicker(
+  const DatePicker(
     this.startDate, {
     Key? key,
     this.width = 60,
@@ -87,20 +88,21 @@ class DatePicker extends StatefulWidget {
     this.inactiveDates,
     this.daysCount = 500,
     this.onDateChange,
-    this.locale = "en_US",
-  }) : assert(
+    this.locale = 'en_US',
+  })  : assert(
             activeDates == null || inactiveDates == null,
             "Can't "
-            "provide both activated and deactivated dates List at the same time.");
+            'provide both activated and deactivated dates List at the same time.'),
+        super(key: key);
 
   @override
-  State<StatefulWidget> createState() => new _DatePickerState();
+  State<StatefulWidget> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
   DateTime? _currentDate;
 
-  ScrollController _controller = ScrollController();
+  final ScrollController _controller = ScrollController();
 
   // late final TextStyle selectedDateStyle;
   // late final TextStyle selectedMonthStyle;
@@ -121,18 +123,18 @@ class _DatePickerState extends State<DatePicker> {
       widget.controller!.setDatePickerState(this);
     }
 
-    this.selectedDateStyle =
-        widget.dateTextStyle.copyWith(color: widget.selectedTextColor);
-    this.selectedMonthStyle =
-        widget.monthTextStyle.copyWith(color: widget.selectedTextColor);
-    this.selectedDayStyle =
-        widget.dayTextStyle.copyWith(color: widget.selectedTextColor);
+    // this.selectedDateStyle =
+    //     widget.dateTextStyle.copyWith(color: widget.selectedTextColor);
+    // this.selectedMonthStyle =
+    //     widget.monthTextStyle.copyWith(color: widget.selectedTextColor);
+    // this.selectedDayStyle =
+    //     widget.dayTextStyle.copyWith(color: widget.selectedTextColor);
 
-    this.deactivatedDateStyle =
+    deactivatedDateStyle =
         widget.dateTextStyle.copyWith(color: widget.deactivatedColor);
-    this.deactivatedMonthStyle =
+    deactivatedMonthStyle =
         widget.monthTextStyle.copyWith(color: widget.deactivatedColor);
-    this.deactivatedDayStyle =
+    deactivatedDayStyle =
         widget.dayTextStyle.copyWith(color: widget.deactivatedColor);
 
     super.initState();
@@ -140,7 +142,7 @@ class _DatePickerState extends State<DatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
       child: ListView.builder(
         itemCount: widget.daysCount,
@@ -149,9 +151,9 @@ class _DatePickerState extends State<DatePicker> {
         itemBuilder: (context, index) {
           // get the date object based on the index position
           // if widget.startDate is null then use the initialDateValue
-          DateTime date;
-          DateTime _date = widget.startDate.add(Duration(days: index));
-          date = new DateTime(_date.year, _date.month, _date.day);
+          //DateTime date;
+          DateTime date = widget.startDate.add(Duration(days: index));
+          date = DateTime(date.year, date.month, date.day);
 
           bool isDeactivated = false;
 
@@ -188,17 +190,17 @@ class _DatePickerState extends State<DatePicker> {
             monthTextStyle: isDeactivated
                 ? deactivatedMonthStyle
                 : isSelected
-                    ? selectedMonthStyle
+                    ? widget.selectedMonthStyle
                     : widget.monthTextStyle,
             dateTextStyle: isDeactivated
                 ? deactivatedDateStyle
                 : isSelected
-                    ? selectedDateStyle
+                    ? widget.selectedDateStyle
                     : widget.dateTextStyle,
             dayTextStyle: isDeactivated
                 ? deactivatedDayStyle
                 : isSelected
-                    ? selectedDayStyle
+                    ? widget.selectedDayStyle
                     : widget.dayTextStyle,
             width: widget.width,
             locale: widget.locale,
@@ -293,7 +295,7 @@ class DatePickerController {
   /// Calculate the number of pixels that needs to be scrolled to go to the
   /// date provided in the argument
   double _calculateDateOffset(DateTime date) {
-    final startDate = new DateTime(
+    final startDate = DateTime(
         _datePickerState!.widget.startDate.year,
         _datePickerState!.widget.startDate.month,
         _datePickerState!.widget.startDate.day);
