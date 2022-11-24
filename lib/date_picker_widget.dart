@@ -39,6 +39,15 @@ class DatePicker extends StatefulWidget {
   /// TextStyle for the date Value
   final TextStyle dateTextStyle;
 
+  /// TextStyle for the selectad date Value
+   final TextStyle selectedDateStyle;
+
+   /// TextStyle for the selectad Month Value
+   final TextStyle selectedMonthStyle;
+
+   /// TextStyle for the selectad day Value
+   final TextStyle selectedDayStyle;  
+
   /// Current Selected Date
   final DateTime?/*?*/ initialSelectedDate;
 
@@ -69,6 +78,9 @@ class DatePicker extends StatefulWidget {
     this.monthTextStyle = defaultMonthTextStyle,
     this.dayTextStyle = defaultDayTextStyle,
     this.dateTextStyle = defaultDateTextStyle,
+    this.selectedDateStyle = defaultMonthTextStyle,
+    this.selectedMonthStyle = defaultMonthTextStyle,
+    this.selectedDayStyle = defaultMonthTextStyle,
     this.selectedTextColor = Colors.white,
     this.selectionColor = AppColors.defaultSelectionColor,
     this.deactivatedColor = AppColors.defaultDeactivatedColor,
@@ -92,9 +104,9 @@ class _DatePickerState extends State<DatePicker> {
 
   ScrollController _controller = ScrollController();
 
-  late final TextStyle selectedDateStyle;
-  late final TextStyle selectedMonthStyle;
-  late final TextStyle selectedDayStyle;
+  // late final TextStyle selectedDateStyle;
+  // late final TextStyle selectedMonthStyle;
+  // late final TextStyle selectedDayStyle;
 
   late final TextStyle deactivatedDateStyle;
   late final TextStyle deactivatedMonthStyle;
